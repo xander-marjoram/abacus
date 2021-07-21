@@ -1,9 +1,9 @@
 <template>
     <div class="digit">
         <div class="heavenly">
-            <div :class="{ bead: true, selected: value >= 5 }">
-                5
-            </div>
+            <div
+                :class="{ bead: true, selected: value >= 5 }"
+                @click="updateHeavenlyValue" />
         </div>
         <div class="earthly">
             <div
@@ -13,9 +13,8 @@
                 :class="{
                     bead: true,
                     selected: isBeadSelected(b)
-                }">
-                {{ b }}
-            </div>
+                }"
+                @click="updateEarthlyValue(b)" />
         </div>
     </div>
 </template>
@@ -29,9 +28,45 @@ export default {
             required: true
         }
     },
+
+    computed: {
+        earthly () {
+            return this.value % 5;
+        },
+        heavenly () {
+            if (this.value >= 5) {
+                return 5;
+            }
+            return 0;
+        }
+    },
+
     methods: {
         isBeadSelected (beadNumber) {
             return this.value % 5 >= beadNumber;
+        },
+
+        updateEarthlyValue (beadNumber) {
+            let value = 0;
+            if (beadNumber > this.earthly) {
+                value = this.heavenly + beadNumber;
+            } else if (beadNumber === this.earthly) {
+                value = this.value - 1;
+            } else {
+                value = this.value - ((this.earthly - beadNumber) + 1);
+            }
+            this.$emit('update:value', value);
+        },
+
+        updateHeavenlyValue () {
+            let value = 0;
+            if (this.value < 5) {
+                value = this.value + 5;
+            } else {
+                value = this.value - 5;
+            }
+            console.log(value);
+            this.$emit('update:value', value);
         }
     }
 };
@@ -73,6 +108,7 @@ export default {
 
     text-align: center;
     color: white;
+    transition: 0.1s;
 }
 
 .earthly .bead.selected {

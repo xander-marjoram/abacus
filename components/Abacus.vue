@@ -1,9 +1,16 @@
 <template>
     <div class="abacus">
         <Digit
-            v-for="i in [4,5,6]"
-            :key="`digit-${i}`"
-            :value="i" />
+            v-for="(power, digitIndex) in powersArray"
+            :key="`digit-${power}`"
+            :value.sync="digitValues[digitIndex]" />
+        <template v-if="showNumbers">
+            <span
+                v-for="(i, index) in digits"
+                :key="`value-${i}`">
+                {{ digitValues[index] }}
+            </span>
+        </template>
     </div>
 </template>
 
@@ -19,6 +26,24 @@ export default {
             type: Number,
             required: true
         }
+    },
+    data: () => ({
+        digitValues: [],
+        showNumbers: true
+    }),
+    computed: {
+        powersArray () {
+            return [...Array(this.digits).keys()].reverse();
+        },
+
+        value () {
+            return this.powersArray
+                .map((power, index) => this.digitValues[index] * 10 ** power)
+                .reduce((a, b) => a + b, 0);
+        }
+    },
+    created () {
+        this.digitValues = [...Array(this.digits)].map(_ => 0);
     }
 };
 </script>
