@@ -15,5 +15,10 @@ module.exports = {
   plugins: [
   ],
   // add your custom rules here
-  rules: {}
+  rules: {
+    indent: ['error', 4],
+    semi: [2, 'always'],
+    'vue/html-indent': ['warn', 4, { 'baseIndent': 1 }],
+    'vue/html-closing-bracket-newline': ['error', { multiline: 'never' }]
+  }
 }
