@@ -1,9 +1,11 @@
 <template>
-    <div class="abacus">
-        <Digit
-            v-for="(power, digitIndex) in powersArray"
-            :key="`digit-${power}`"
-            :value.sync="digitValues[digitIndex]" />
+    <div class="abacus-container">
+        <div class="abacus">
+            <Digit
+                v-for="(power, digitIndex) in powersArray"
+                :key="`digit-${power}`"
+                :value.sync="digitValues[digitIndex]" />
+        </div>
         <template v-if="showNumbers">
             <span
                 v-for="(i, index) in digits"
@@ -49,14 +51,15 @@ export default {
 </script>
 
 <style>
+.abacus-container {
+    display: inline-block;
+}
+
 .abacus {
-    border: 1px solid grey;
-    width: 100%;
-    max-width: 228px;
+    border: 4px solid #551F2A;
     margin: 32px auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    flex-flow: row nowrap;
     justify-items: center;
-    background-color: brown;
 }
 </style>

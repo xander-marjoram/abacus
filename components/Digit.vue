@@ -73,8 +73,6 @@ export default {
 .digit {
     display: flex;
     flex-flow: column nowrap;
-    gap: 8px;
-    margin: 4px;
 }
 
 .earthly, .heavenly {
@@ -82,12 +80,13 @@ export default {
     flex-direction: column;
     flex-flow: column nowrap;
     justify-content: flex-start;
-    background-color: lightblue;
-    padding: 4px;
+    background: repeating-linear-gradient(90deg, tan 0 32px, #551F2A 0 40px);
+    width: 72px;
+    border: 4px solid #551F2A;
 }
 
 .heavenly {
-    height: 60px;
+    height: 62px;
 }
 
 .earthly {
@@ -100,8 +99,8 @@ export default {
     height: 30px;
     width: 60px;
     background-color: brown;
-    border-radius: 50%;
-    margin: 1px 0;
+    border-radius: 45%;
+    margin: 1px 6px;
 
     text-align: center;
     color: white;
