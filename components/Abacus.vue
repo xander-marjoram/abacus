@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Digit from './Digit.vue';
 
 export default {
@@ -37,14 +38,6 @@ export default {
         digits: {
             type: Number,
             required: true
-        },
-        showNumbers: {
-            type: Boolean,
-            default: true
-        },
-        soundEnabled: {
-            type: Boolean,
-            default: true
         }
     },
 
@@ -56,6 +49,10 @@ export default {
     }),
 
     computed: {
+        ...mapState('settings', [
+            'showNumbers',
+            'soundEnabled'
+        ]),
         powersArray () {
             return [...Array(this.digits).keys()].reverse();
         },

@@ -1,5 +1,7 @@
 <template>
     <div>
+        <settings />
+
         <abacus
             :digits="digits"
             :show-numbers="true"
@@ -40,10 +42,12 @@
 
 <script>
 import Abacus from '@/components/Abacus.vue';
+import Settings from '@/components/Settings.vue';
 
 export default {
     components: {
-        Abacus
+        Abacus,
+        Settings
     },
 
     data: () => ({
@@ -86,6 +90,22 @@ export default {
 </script>
 
 <style>
+button {
+    background-color: #eee;
+    border: 1px solid grey;
+    margin: 4px;
+    padding: 8px;
+}
+
+button:hover,
+button:focus {
+    outline: 1px solid black;
+}
+
+button:active {
+    background-color: #ccc
+}
+
 .question-container {
     margin: auto;
     width: 95%;
@@ -116,6 +136,7 @@ span {
     text-align: center;
     margin: 0 8px;
 }
+
 input {
     height: 44px;
     font-size: 32px;
