@@ -2,7 +2,7 @@
     <div>
         <abacus :digits="digits" />
 
-        <div class="numbers-container">
+        <div class="question-container">
             <div class="question">
                 <div>
                     <span>{{ firstNumber }}</span>
@@ -83,7 +83,7 @@ export default {
 </script>
 
 <style>
-.numbers-container {
+.question-container {
     margin: auto;
     width: 95%;
     max-width: 500px;
