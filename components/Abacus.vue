@@ -41,6 +41,10 @@ export default {
         audioSrc2: 'https://d9olupt5igjta.cloudfront.net/samples/sample_files/45347/85d2c4f2262dfed6d4f4381a2401686bbb7fff1e/mp3/_808-rimshot-snare_C_minor.mp3?1598487790'
     }),
 
+    fetch () {
+        this.digitValues = this.buildZerosArrayOfLength(this.digits);
+    },
+
     computed: {
         ...mapState('settings', [
             'digits',
@@ -60,8 +64,12 @@ export default {
     },
 
     watch: {
-        digits () {
-            this.digitValues = this.buildZerosArrayOfLength(this.digits);
+        digits (newDigits, oldDigits) {
+            if (newDigits < oldDigits) {
+                this.digitValues.splice(0, oldDigits - newDigits);
+            } else {
+                this.digitValues = this.buildZerosArrayOfLength(newDigits - oldDigits).concat(this.digitValues);
+            }
         },
 
         digitValues (_, oldValues) {
