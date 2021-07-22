@@ -32,7 +32,7 @@
                 <button type="button" @click="checkAnswer">
                     Check
                 </button>
-                <button type="button" @click="generateNumbers">
+                <button type="button" @click="generateNewNumbers">
                     Reset
                 </button>
             </div>
@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import Abacus from '@/components/Abacus.vue';
 import Settings from '@/components/Settings.vue';
 
@@ -52,15 +54,28 @@ export default {
 
     data: () => ({
         answer: null,
-        digits: 3,
         firstNumber: 0,
         resultText: '',
         secondNumber: 0,
         total: 0
     }),
 
+    computed: {
+        ...mapState('settings', [
+            'digits'
+        ])
+    },
+
+    watch: {
+        digits (newDigits) {
+            if (this.total > 10 ** newDigits) {
+                this.generateNewNumbers();
+            }
+        }
+    },
+
     created () {
-        this.generateNumbers();
+        this.generateNewNumbers();
     },
 
     methods: {
@@ -72,7 +87,7 @@ export default {
             }
         },
 
-        generateNumbers () {
+        generateNewNumbers () {
             this.answer = null;
             this.resultText = '';
             this.total = this.getRandomNumberBetween(2, 10 ** this.digits);

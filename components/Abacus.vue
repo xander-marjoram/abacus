@@ -34,13 +34,6 @@ export default {
         Digit
     },
 
-    props: {
-        digits: {
-            type: Number,
-            required: true
-        }
-    },
-
     data: () => ({
         audioElement: null,
         digitValues: [],
@@ -50,9 +43,11 @@ export default {
 
     computed: {
         ...mapState('settings', [
+            'digits',
             'showNumbers',
             'soundEnabled'
         ]),
+
         powersArray () {
             return [...Array(this.digits).keys()].reverse();
         },
@@ -65,15 +60,15 @@ export default {
     },
 
     watch: {
+        digits () {
+            this.digitValues = this.buildZerosArrayOfLength(this.digits);
+        },
+
         digitValues (_, oldValues) {
             if (oldValues.length) {
                 this.playSound();
             }
         }
-    },
-
-    created () {
-        this.digitValues = this.buildZerosArrayOfLength(this.digits);
     },
 
     mounted () {

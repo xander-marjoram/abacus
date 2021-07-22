@@ -22,7 +22,8 @@
                     -
                 </button>
                 <span>
-                    Columns<br />{{ digits }}
+                    Columns<br>
+                    {{ digits }}
                 </span>
                 <button
                     :disabled="digits >= 9"
@@ -95,9 +96,10 @@ export default {
     top: 48px;
     right: 0;
     border: 1px solid #ccc;
+    background-color: #eee;
     height: 120px;
     width: 180px;
-    box-shadow: 4px 4px 8px #ccc;
+    box-shadow: 2px 2px 4px grey;
 }
 
 .settings-window span {
