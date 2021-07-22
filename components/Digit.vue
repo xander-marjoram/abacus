@@ -50,8 +50,6 @@ export default {
             let value = 0;
             if (beadNumber > this.earthly) {
                 value = this.heavenly + beadNumber;
-            } else if (beadNumber === this.earthly) {
-                value = this.value - 1;
             } else {
                 value = this.value - ((this.earthly - beadNumber) + 1);
             }
@@ -65,7 +63,6 @@ export default {
             } else {
                 value = this.value - 5;
             }
-            console.log(value);
             this.$emit('update:value', value);
         }
     }

@@ -12,8 +12,8 @@
                 <span>=</span>
                 <div>
                     <input
-                        type="number"
                         v-model="answer"
+                        type="number"
                         min="0"
                         step="1"
                         @keydown.enter="checkAnswer">
@@ -39,6 +39,10 @@
 import Abacus from '@/components/Abacus.vue';
 
 export default {
+    components: {
+        Abacus
+    },
+
     data: () => ({
         answer: null,
         digits: 3,
@@ -47,10 +51,6 @@ export default {
         secondNumber: 0,
         total: 0
     }),
-
-    components: {
-        Abacus
-    },
 
     created () {
         this.generateNumbers();
