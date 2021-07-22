@@ -1,6 +1,9 @@
 <template>
     <div>
-        <abacus :digits="digits" />
+        <abacus
+            :digits="digits"
+            :show-numbers="true"
+            :sound-enabled="true" />
 
         <div class="question-container">
             <div class="question">

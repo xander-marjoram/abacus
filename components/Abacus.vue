@@ -1,5 +1,5 @@
 <template>
-    <div class="abacus-wrapper">
+    <div class="centre-wrapper">
         <div class="abacus-container">
             <div class="abacus">
                 <Digit
@@ -14,7 +14,14 @@
                     {{ digitValues[index] }}
                 </span>
             </div>
+            <div class="centre-wrapper">
+                <button type="button" @click="digitValues = buildZerosArrayOfLength(digits)">
+                    Reset
+                </button>
+            </div>
         </div>
+
+        <audio :src="audioSrc1" />
     </div>
 </template>
 
@@ -25,16 +32,29 @@ export default {
     components: {
         Digit
     },
+
     props: {
         digits: {
             type: Number,
             required: true
+        },
+        showNumbers: {
+            type: Boolean,
+            default: true
+        },
+        soundEnabled: {
+            type: Boolean,
+            default: true
         }
     },
+
     data: () => ({
+        audioElement: null,
         digitValues: [],
-        showNumbers: true
+        audioSrc1: 'https://d9olupt5igjta.cloudfront.net/samples/sample_files/22711/deecc96dd7eab255b56ed2f9a551fd5d20279c66/mp3/_Bongo_109.mp3?1548141031',
+        audioSrc2: 'https://d9olupt5igjta.cloudfront.net/samples/sample_files/45347/85d2c4f2262dfed6d4f4381a2401686bbb7fff1e/mp3/_808-rimshot-snare_C_minor.mp3?1598487790'
     }),
+
     computed: {
         powersArray () {
             return [...Array(this.digits).keys()].reverse();
@@ -46,15 +66,40 @@ export default {
                 .reduce((a, b) => a + b, 0);
         }
     },
+
+    watch: {
+        digitValues (_, oldValues) {
+            if (oldValues.length) {
+                this.playSound();
+            }
+        }
+    },
+
     created () {
-        this.digitValues = [...Array(this.digits)].map(_ => 0);
+        this.digitValues = this.buildZerosArrayOfLength(this.digits);
+    },
+
+    mounted () {
+        this.audioElement = document.querySelector('audio');
+    },
+
+    methods: {
+        buildZerosArrayOfLength (length) {
+            return [...Array(length)].map(_ => 0);
+        },
+
+        playSound () {
+            if (this.soundEnabled) {
+                this.audioElement.play();
+            }
+        }
     }
 };
 </script>
 
 <style>
-.abacus-wrapper {
-    width: 100vw;
+.centre-wrapper {
+    width: 100%;
     display: flex;
     justify-content: center;
 }
@@ -66,7 +111,7 @@ export default {
 
 .abacus {
     border: 4px solid #551F2A;
-    margin: 0 auto;
+    margin: 16px auto;
     display: flex;
     flex-flow: row nowrap;
     justify-items: center;
