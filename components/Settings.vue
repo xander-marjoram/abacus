@@ -1,12 +1,14 @@
 <template>
     <div class="settings-container">
-        <button
-            :aria-expanded="`${showSettingsWindow}`"
-            aria-label="Toggle settings window"
-            class="settings-window-button settings-button"
-            @click="toggleSettingsWindow">
-            <img src="/settings.svg" alt="Settings" class="setting-icon">
-        </button>
+        <div>
+            <button
+                :aria-expanded="`${showSettingsWindow}`"
+                aria-label="Toggle settings window"
+                class="settings-window-button settings-button"
+                @click="toggleSettingsWindow">
+                <img src="/settings.svg" alt="Settings" class="setting-icon">
+            </button>
+        </div>
         <div v-if="showSettingsWindow" class="settings-window">
             <button class="settings-button" @click="toggleSound">
                 <img
@@ -32,20 +34,49 @@
                     +
                 </button>
             </div>
+            <div class="operators">
+                <label
+                    v-for="operator in operators"
+                    :key="`input-${operator}`"
+                    :for="`${operator}-checkbox`">
+                    <input
+                        :id="`${operator}-checkbox`"
+                        v-model="selectedOperators"
+                        type="checkbox"
+                        :value="operator">
+                    <span>
+                        {{ operator }}
+                    </span>
+                </label>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 import { mapMutations, mapState } from 'vuex';
+import { ADD, SUBTRACT } from '../services/constants';
 
 export default {
+    data: () => ({
+        operators: [ADD, SUBTRACT]
+    }),
+
     computed: {
         ...mapState('settings', [
             'digits',
             'showSettingsWindow',
             'soundEnabled'
         ]),
+
+        selectedOperators: {
+            get () {
+                return this.$store.state.settings.selectedOperators;
+            },
+            set (operators) {
+                this.updateSelectedOperators(operators);
+            }
+        },
 
         speakerIconSrc () {
             return this.soundEnabled ? '/speaker-on.svg' : '/speaker-off.svg';
@@ -57,7 +88,8 @@ export default {
             'addDigit',
             'removeDigit',
             'toggleSettingsWindow',
-            'toggleSound'
+            'toggleSound',
+            'updateSelectedOperators'
         ])
     }
 };
@@ -97,7 +129,7 @@ export default {
     right: 0;
     border: 1px solid #ccc;
     background-color: #eee;
-    height: 120px;
+    height: 180px;
     width: 190px;
     box-shadow: 2px 2px 4px grey;
 }
@@ -111,5 +143,15 @@ export default {
     flex-flow: row nowrap;
     align-items: center;
     font-size: 16px;
+}
+
+.operators {
+    display: flex;
+    flex-flow: column;
+}
+
+input[type="checkbox"] {
+    height: 16px;
+    width: 16px;
 }
 </style>

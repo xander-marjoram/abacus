@@ -32,6 +32,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import { ADD, OPERATORS } from '@/services/constants';
 
 export default {
     data: () => ({
@@ -45,7 +46,8 @@ export default {
 
     computed: {
         ...mapState('settings', [
-            'digits'
+            'digits',
+            'selectedOperators'
         ])
     },
 
@@ -72,9 +74,19 @@ export default {
 
         generateNewNumbers () {
             this.resetResults();
-            this.answer = this.getRandomNumberBetween(2, 10 ** this.digits);
-            this.firstNumber = this.getRandomNumberBetween(1, this.answer);
-            this.secondNumber = this.answer - this.firstNumber;
+            const randomIndex = Math.floor(Math.random() * this.selectedOperators.length);
+            const operator = this.selectedOperators[randomIndex];
+            this.operator = OPERATORS[operator];
+
+            if (operator === ADD) {
+                this.answer = this.getRandomNumberBetween(2, 10 ** this.digits);
+                this.firstNumber = this.getRandomNumberBetween(1, this.answer);
+                this.secondNumber = this.answer - this.firstNumber;
+            } else {
+                this.firstNumber = this.getRandomNumberBetween(2, 10 ** this.digits);
+                this.secondNumber = this.getRandomNumberBetween(1, this.firstNumber);
+                this.answer = this.firstNumber - this.secondNumber;
+            }
         },
 
         getRandomNumberBetween (min, max) {
