@@ -98,7 +98,7 @@ export default {
     border: 1px solid #ccc;
     background-color: #eee;
     height: 120px;
-    width: 180px;
+    width: 190px;
     box-shadow: 2px 2px 4px grey;
 }
 
