@@ -17,6 +17,10 @@ export const mutations = {
         state.digits--;
     },
 
+    toggleShowNumbers (state) {
+        state.showNumbers = !state.showNumbers;
+    },
+
     toggleSettingsWindow (state) {
         state.showSettingsWindow = !state.showSettingsWindow;
     },

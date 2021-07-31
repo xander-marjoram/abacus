@@ -2,7 +2,7 @@
     <div class="digit">
         <div class="heavenly">
             <div
-                :class="{ bead: true, selected: value >= 5 }"
+                :class="['bead', { selected: value >= 5 }]"
                 @click="updateHeavenlyValue" />
         </div>
         <div class="earthly">
@@ -10,10 +10,7 @@
                 v-for="b in 4"
                 :key="`bead-${b}`"
                 bead
-                :class="{
-                    bead: true,
-                    selected: isBeadSelected(b)
-                }"
+                :class="['bead', { selected: isBeadSelected(b) }]"
                 @click="updateEarthlyValue(b)" />
         </div>
     </div>

@@ -106,7 +106,7 @@ export default {
 
 .abacus-container {
     display: inline-block;
-    margin: 32px 0;
+    margin: 16px 0;
 }
 
 .abacus {

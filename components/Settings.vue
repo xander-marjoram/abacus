@@ -10,13 +10,32 @@
             </button>
         </div>
         <div v-if="showSettingsWindow" class="settings-window">
-            <button class="settings-button" @click="toggleSound">
-                <img
-                    :src="speakerIconSrc"
-                    alt="Toggle sound"
-                    class="setting-icon">
-            </button>
-            <div class="digit-controls">
+            <div class="settings-row">
+                <button class="settings-button" @click="toggleSound">
+                    <img
+                        :src="speakerIconSrc"
+                        alt="Toggle sound"
+                        class="setting-icon">
+                </button>
+                <span>
+                    Sound {{ soundEnabled ? 'on' : 'off' }}
+                </span>
+            </div>
+
+            <div class="settings-row">
+                <button
+                    :class="['settings-button', {
+                        'x-overlay': !showNumbers
+                    }]"
+                    @click="toggleShowNumbers">
+                    0
+                </button>
+                <span>
+                    Toggle numbers
+                </span>
+            </div>
+
+            <div class="settings-row">
                 <button
                     :disabled="digits < 2"
                     class="settings-button"
@@ -65,6 +84,7 @@ export default {
     computed: {
         ...mapState('settings', [
             'digits',
+            'showNumbers',
             'showSettingsWindow',
             'soundEnabled'
         ]),
@@ -88,6 +108,7 @@ export default {
             'addDigit',
             'removeDigit',
             'toggleSettingsWindow',
+            'toggleShowNumbers',
             'toggleSound',
             'updateSelectedOperators'
         ])
@@ -119,6 +140,16 @@ export default {
     width: 42px;
 }
 
+.x-overlay:before {
+    position: absolute;
+    content: "×";
+    width: 100%;
+    height: 100%;
+    font-size: 36px;
+    margin-top: -12px;
+    margin-left: -1px;
+}
+
 .setting-icon {
     height: 24px;
     width: 24px;
@@ -134,8 +165,8 @@ export default {
     right: 0;
     border: 1px solid #ccc;
     background-color: #eee;
-    height: 180px;
-    width: 190px;
+    height: 240px;
+    width: 220px;
     box-shadow: 2px 2px 4px grey;
 }
 
@@ -143,7 +174,7 @@ export default {
     font-size: 16px;
 }
 
-.digit-controls {
+.settings-row {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;

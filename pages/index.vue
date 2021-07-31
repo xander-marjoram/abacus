@@ -28,7 +28,7 @@ export default {
     box-shadow: 2px 2px 4px #777;
     padding: 16px;
     max-width: 800px;
-    margin: 32px auto;
+    margin: auto;
     overflow-x: hidden;
 }
 
@@ -37,6 +37,7 @@ button {
     border: 1px solid grey;
     margin: 4px;
     padding: 8px;
+    font-size: 1rem;
 }
 
 button:hover,
