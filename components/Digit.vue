@@ -80,9 +80,9 @@ export default {
     flex-direction: column;
     flex-flow: column nowrap;
     justify-content: flex-start;
-    background: repeating-linear-gradient(90deg, tan 0 32px, #551F2A 0 40px);
+    background: repeating-linear-gradient(90deg, #b5b5b5 0 32px, #224 0 40px);
     width: 72px;
-    border: 4px solid #551F2A;
+    border: 4px solid #224;
 }
 
 .heavenly {
@@ -98,12 +98,9 @@ export default {
     display: block;
     height: 30px;
     width: 60px;
-    background-color: brown;
+    background-color: #b22222;
     border-radius: 45%;
     margin: 1px 6px;
-
-    text-align: center;
-    color: white;
     transition: 0.1s;
 }
 

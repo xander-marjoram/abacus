@@ -31,6 +31,7 @@ button {
 button:hover,
 button:focus {
     outline: 1px solid black;
+    background-color: #ddd;
 }
 
 button:active {

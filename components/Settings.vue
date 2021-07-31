@@ -96,6 +96,11 @@ export default {
 </script>
 
 <style>
+.settings-window,
+.settings-window * {
+    z-index: 99;
+}
+
 .settings-window-button {
     position: absolute;
     right: 0;

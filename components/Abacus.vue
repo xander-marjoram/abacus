@@ -110,7 +110,7 @@ export default {
 }
 
 .abacus {
-    border: 4px solid #551F2A;
+    border: 4px solid #222244;
     margin: 16px auto;
     display: flex;
     flex-flow: row nowrap;

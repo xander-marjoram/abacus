@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen+Mono&display=swap');
+
+body,
+button,
+input {
+    font-family: 'Oxygen Mono', monospace;
+    color: #222;
+}

@@ -2,9 +2,9 @@
     <div class="question-container">
         <div class="question">
             <div>
-                <span>{{ firstNumber }}</span>
+                <span>{{ firstNumber.toLocaleString() }}</span>
                 <span>{{ operator }}</span>
-                <span>{{ secondNumber }}</span>
+                <span>{{ secondNumber.toLocaleString() }}</span>
             </div>
             <span>=</span>
             <div>
@@ -107,7 +107,7 @@ export default {
 .question-container {
     margin: auto;
     width: 95%;
-    max-width: 500px;
+    max-width: 600px;
 }
 
 .question {
@@ -138,6 +138,7 @@ span {
 input {
     height: 44px;
     font-size: 32px;
-    width: 140px;
+    width: 180px;
+    margin-left: 8px;
 }
 </style>
