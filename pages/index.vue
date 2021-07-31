@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="body-card">
         <settings />
         <abacus />
         <question />
@@ -21,6 +21,17 @@ export default {
 </script>
 
 <style>
+.body-card {
+    background-color: #ddd;
+    border-radius: 4px;
+    border: 1px solid #999;
+    box-shadow: 2px 2px 4px #777;
+    padding: 16px;
+    max-width: 800px;
+    margin: 32px auto;
+    overflow-x: hidden;
+}
+
 button {
     background-color: #eee;
     border: 1px solid grey;
