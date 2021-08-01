@@ -1,0 +1,7 @@
+- Start using SCSS
+- Make abacus size variable
+- Adjust abacus scaling for lots of digits on mobile
+- Save settings to local storage
+- Read settings from local storage
+- Multiplication
+- Division
