@@ -66,7 +66,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import '~/assets/scss/variables';
+
 .digit {
     display: flex;
     flex-flow: column nowrap;
@@ -77,36 +79,36 @@ export default {
     flex-direction: column;
     flex-flow: column nowrap;
     justify-content: flex-start;
-    background: repeating-linear-gradient(90deg, #b5b5b5 0 32px, #224 0 40px);
-    width: 72px;
-    border: 4px solid #224;
+    background: repeating-linear-gradient(90deg, $abacus-background-colour 0 $abacus-background-layer-1-width, $abacus-border-colour 0 $abacus-background-layer-2-width);
+    width: $digit-width;
+    border: $abacus-border-width solid $abacus-border-colour;
 }
 
 .heavenly {
-    height: 62px;
+    height: $abacus-heavenly-height;
 }
 
 .earthly {
     justify-content: flex-end;
-    height: 160px;
+    height: $abacus-earthly-height;
 }
 
 .bead {
     display: block;
-    height: 30px;
-    width: 60px;
-    background-color: #b22222;
+    height: $bead-height;
+    width: $bead-width;
+    background-color: $bead-colour;
     border-radius: 45%;
-    margin: 1px 6px;
+    margin: $bead-vertical-margin $bead-horizontal-margin;
     transition: 0.1s;
 }
 
 .earthly .bead.selected {
-    transform: translate(0, -30px);
+    transform: translate(0, calc(-1 * #{$bead-move-distance}));
 }
 
 .heavenly .bead.selected {
-    transform: translate(0, 30px);
+    transform: translate(0, $bead-move-distance);
 }
 
 </style>

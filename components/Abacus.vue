@@ -97,7 +97,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import '~/assets/scss/variables';
+
 .centre-wrapper {
     width: 100%;
     display: flex;
@@ -110,7 +112,7 @@ export default {
 }
 
 .abacus {
-    border: 4px solid #222244;
+    border: $abacus-border-width solid $abacus-border-colour;
     margin: 16px auto;
     display: flex;
     flex-flow: row nowrap;
