@@ -24,7 +24,7 @@
                 Check
             </button>
             <button type="button" @click="generateNewNumbers">
-                Reset
+                New question
             </button>
         </div>
     </div>
