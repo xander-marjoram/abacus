@@ -43,7 +43,7 @@
                     0
                 </button>
                 <span>
-                    Toggle numbers
+                    Numbers {{ showNumbers ? 'shown' : 'hidden' }}
                 </span>
             </div>
 
@@ -55,7 +55,7 @@
                     -
                 </button>
                 <span>
-                    Columns<br>
+                    Digits<br>
                     {{ digits }}
                 </span>
                 <button

@@ -4,7 +4,7 @@ export default {
     target: 'static',
 
     head: {
-        title: 'Train your brain! | Abacus',
+        title: 'Abacus Practice',
         meta: [
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
