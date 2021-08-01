@@ -20,12 +20,11 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import '~/assets/scss/variables';
+
 .body-card {
-    background-color: #ddd;
     border-radius: 4px;
-    border: 1px solid #999;
-    box-shadow: 2px 2px 4px #777;
     padding: 16px;
     max-width: 800px;
     margin: auto;
@@ -33,20 +32,8 @@ export default {
 }
 
 button {
-    background-color: #eee;
-    border: 1px solid grey;
     margin: 4px;
     padding: 8px;
     font-size: 1rem;
-}
-
-button:hover,
-button:focus {
-    outline: 1px solid black;
-    background-color: #ddd;
-}
-
-button:active {
-    background-color: #ccc
 }
 </style>

@@ -11,6 +11,18 @@
         </div>
         <div v-if="showSettingsWindow" class="settings-window">
             <div class="settings-row">
+                <button class="settings-button" @click="toggleDarkMode">
+                    <img
+                        :src="darkModeIconSrc"
+                        alt="Toggle dark mode"
+                        class="setting-icon">
+                </button>
+                <span>
+                    Dark mode {{ darkMode ? 'on' : 'off' }}
+                </span>
+            </div>
+
+            <div class="settings-row">
                 <button class="settings-button" @click="toggleSound">
                     <img
                         :src="speakerIconSrc"
@@ -83,6 +95,7 @@ export default {
 
     computed: {
         ...mapState('settings', [
+            'darkMode',
             'digits',
             'showNumbers',
             'showSettingsWindow',
@@ -98,6 +111,10 @@ export default {
             }
         },
 
+        darkModeIconSrc () {
+            return this.darkMode ? '/dark-mode.png' : '/light-mode.png';
+        },
+
         speakerIconSrc () {
             return this.soundEnabled ? '/speaker-on.svg' : '/speaker-off.svg';
         }
@@ -107,6 +124,7 @@ export default {
         ...mapMutations('settings', [
             'addDigit',
             'removeDigit',
+            'toggleDarkMode',
             'toggleSettingsWindow',
             'toggleShowNumbers',
             'toggleSound',
@@ -165,7 +183,7 @@ export default {
     right: 0;
     border: 1px solid #ccc;
     background-color: #eee;
-    height: 240px;
+    height: 300px;
     width: 220px;
     box-shadow: 2px 2px 4px grey;
 }

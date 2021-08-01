@@ -1,9 +1,9 @@
 $abacus-border-colour: #222244;
 $abacus-border-width: 4px;
-$abacus-background-colour: #b5b5b5;
 
 $bead-height: 30px;
-$bead-width: 60px;
+$bead-width: 50px;
+
 $bead-colour: #b22222;
 $bead-horizontal-margin: 6px;
 $bead-vertical-margin: 1px;
@@ -15,3 +15,25 @@ $abacus-earthly-height: calc(5 * #{$bead-move-distance});
 $digit-width: calc(#{$bead-width} + calc(2 * #{$bead-horizontal-margin}));
 $abacus-background-layer-1-width: calc(calc(#{$digit-width} / 2) - #{$abacus-border-width});
 $abacus-background-layer-2-width: calc(calc(#{$digit-width} / 2) + #{$abacus-border-width});
+
+// Colours
+$black: #000000;
+$grey-1: #111111;
+$grey-2: #222222;
+$grey-3: #333333;
+$grey-4: #444444;
+$grey-5: #555555;
+$grey-6: #666666;
+$grey-7: #777777;
+$grey-8: #888888;
+$grey-9: #999999;
+$grey-10: #aaaaaa;
+$grey-11: #bbbbbb;
+$grey-12: #cccccc;
+$grey-13: #dddddd;
+$grey-14: #eeeeee;
+$white: #ffffff;
+
+$abacus-background-colour: $grey-11;
+
+$body-background-colour: $grey-14;

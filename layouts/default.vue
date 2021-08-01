@@ -2,8 +2,6 @@
     <Nuxt />
 </template>
 
-<style>
-body {
-    background-color: #eee;
-}
+<style lang="scss">
+@import '~/assets/scss/dark-mode';
 </style>

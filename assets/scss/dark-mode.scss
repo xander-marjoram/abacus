@@ -1,0 +1,97 @@
+@import '~/assets/scss/variables';
+
+body {
+    background-color: $grey-14;
+
+    .body-card {
+        background-color: $grey-13;
+        border: 1px solid $grey-9;
+        box-shadow: 2px 2px 4px $grey-7;
+    }
+
+    button {
+        background-color: $grey-14;
+        border: 1px solid $grey-6;
+
+        &:hover,
+        &:focus {
+            outline: 1px solid $black;
+            background-color: $grey-14;
+        }
+
+        &:active {
+            outline: 1px solid $black;
+            background-color: $grey-12;
+        }
+    }
+}
+
+body.dark {
+    background-color: $grey-3;
+
+    .body-card {
+        background-color: $grey-5;
+        color: $white;
+    }
+
+    button {
+        background-color: $grey-5;
+        border: 1px solid $white;
+        color: $white;
+
+        &:hover,
+        &:focus {
+            background-color: $grey-3;
+        }
+
+        &:active {
+            background-color: $grey-2;
+        }
+    }
+
+    input {
+        background-color: $grey-5;
+        color: $white;
+        border: 1px solid $white;
+    }
+
+    $abacus-border-color: $grey-3;
+    $abacus-background-colour: $grey-10;
+
+    .abacus {
+        border: $abacus-border-width solid $abacus-border-color;
+    }
+
+    .earthly,
+    .heavenly {
+        border: $abacus-border-width solid $abacus-border-color;
+        background: repeating-linear-gradient(90deg, $abacus-background-colour 0 $abacus-background-layer-1-width, $abacus-border-color 0 $abacus-background-layer-2-width);
+    }
+
+    .bead {
+        background-color: darken($bead-colour, 3);
+    }
+
+    .settings-window {
+        background-color: $grey-10;
+        color: $black;
+
+    }
+
+    .settings-button {
+        background-color: $grey-12;
+        border: 1px solid $grey-6;
+        color: black;
+
+        &:hover,
+        &:focus {
+            outline: 1px solid $black;
+            background-color: $grey-14;
+        }
+
+        &:active {
+            outline: 1px solid $black;
+            background-color: $grey-12;
+        }
+    }
+}

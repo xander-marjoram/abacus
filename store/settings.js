@@ -1,12 +1,23 @@
 import { ADD } from '../services/constants';
 
 export const state = () => ({
+    darkMode: false,
     digits: 3,
     selectedOperators: [ADD],
     showNumbers: true,
     showSettingsWindow: false,
     soundEnabled: false
 });
+
+const updateDarkMode = (darkMode) => {
+    if (document) {
+        if (darkMode) {
+            document.body.classList.add('dark');
+        } else {
+            document.body.classList.remove('dark');
+        }
+    }
+};
 
 export const mutations = {
     addDigit (state) {
@@ -15,6 +26,11 @@ export const mutations = {
 
     removeDigit (state) {
         state.digits--;
+    },
+
+    toggleDarkMode (state) {
+        state.darkMode = !state.darkMode;
+        updateDarkMode(state.darkMode);
     },
 
     toggleShowNumbers (state) {
