@@ -86,11 +86,11 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex';
-import { ADD, SUBTRACT } from '../services/constants';
+import { ADD, MULTIPLY, SUBTRACT } from '../services/constants';
 
 export default {
     data: () => ({
-        operators: [ADD, SUBTRACT]
+        operators: [ADD, SUBTRACT, MULTIPLY]
     }),
 
     computed: {
@@ -181,7 +181,7 @@ export default {
     right: 0;
     border: 1px solid #ccc;
     background-color: #eee;
-    height: 300px;
+    height: 320px;
     width: 220px;
     box-shadow: 2px 2px 4px grey;
 }

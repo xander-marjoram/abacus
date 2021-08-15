@@ -36,7 +36,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import { ADD, OPERATORS } from '@/services/constants';
+import { ADD, SUBTRACT, MULTIPLY, OPERATORS } from '@/services/constants';
 
 export default {
     data: () => ({
@@ -84,11 +84,36 @@ export default {
                 this.answer = this.getRandomNumberBetween(2, 10 ** this.digits);
                 this.firstNumber = this.getRandomNumberBetween(1, this.answer);
                 this.secondNumber = this.answer - this.firstNumber;
-            } else {
+            } else if (operator === SUBTRACT) {
                 this.firstNumber = this.getRandomNumberBetween(2, 10 ** this.digits);
                 this.secondNumber = this.getRandomNumberBetween(1, this.firstNumber);
                 this.answer = this.firstNumber - this.secondNumber;
+            } else if (operator === MULTIPLY) {
+                let answer, factors;
+                do {
+                    // e.g. for a 3 digit number get a number between 100 and 1000
+                    answer = this.getRandomNumberBetween(10 ** (this.digits - 1), 10 ** this.digits);
+                    factors = this.getInterestingFactors(answer);
+                } while (factors.length < 1);
+
+                this.answer = answer;
+                this.firstNumber = factors[Math.floor(Math.random() * factors.length)]; // Pick a random factor
+                this.secondNumber = answer / this.firstNumber;
             }
+        },
+
+        // Returns all factors except 1 and the number itself
+        getInterestingFactors (n) {
+            const factors = [];
+
+            let i = 2;
+            while (i < Math.sqrt(n)) {
+                if (n % i === 0) {
+                    factors.push(i, n / i);
+                }
+                i++;
+            }
+            return factors;
         },
 
         getRandomNumberBetween (min, max) {
