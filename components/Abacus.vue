@@ -100,6 +100,10 @@ export default {
         window.addEventListener('resize', this.scaleFunction);
     },
 
+    updated () {
+        this.updateAbacusScaling();
+    },
+
     destroyed () {
         window.removeEventListener('resize', this.scaleFunction);
     },
@@ -115,9 +119,8 @@ export default {
             }
         },
 
-        async updateAbacusScaling () {
+        updateAbacusScaling () {
             if (document) {
-                await this.$nextTick();
                 const digitsWidth = document.querySelector('[scaling-wrapper]').getBoundingClientRect().width;
                 const normalisedDigitsWidth = digitsWidth * (1 / this.scaleFactor);
                 const bodyCardWidth = document.querySelector('.body-card').getBoundingClientRect().width;
