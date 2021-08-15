@@ -161,8 +161,6 @@ export default {
 .x-overlay:before {
     position: absolute;
     content: "×";
-    width: 100%;
-    height: 100%;
     font-size: 36px;
     margin-top: -12px;
     margin-left: -1px;
