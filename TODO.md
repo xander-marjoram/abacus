@@ -1,4 +1,3 @@
-- Abacus scaling with window resize event listener
 - Save settings to local storage
 - Read settings from local storage
 - Multiplication

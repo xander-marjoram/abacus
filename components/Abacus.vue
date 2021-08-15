@@ -3,7 +3,10 @@
         <div class="abacus-container">
             <div
                 scaling-wrapper
-                :class="`scale-${scaleFactor}`">
+                :style="{
+                    transform: `scale(${scaleFactor})`,
+                    padding: '16px'
+                }">
                 <div class="abacus">
                     <Digit
                         v-for="(power, digitIndex) in powersArray"
@@ -25,25 +28,25 @@
             </div>
         </div>
 
-        <audio :src="audioSrc1" />
+        <audio :src="audioSrc" />
     </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import Digit from './Digit.vue';
+import throttle from 'lodash.throttle';
 
 export default {
     components: {
-        Digit
+        Digit: () => import('./Digit.vue')
     },
 
     data: () => ({
         audioElement: null,
+        audioSrc: 'https://d9olupt5igjta.cloudfront.net/samples/sample_files/22711/deecc96dd7eab255b56ed2f9a551fd5d20279c66/mp3/_Bongo_109.mp3?1548141031',
         digitValues: [],
-        audioSrc1: 'https://d9olupt5igjta.cloudfront.net/samples/sample_files/22711/deecc96dd7eab255b56ed2f9a551fd5d20279c66/mp3/_Bongo_109.mp3?1548141031',
-        audioSrc2: 'https://d9olupt5igjta.cloudfront.net/samples/sample_files/45347/85d2c4f2262dfed6d4f4381a2401686bbb7fff1e/mp3/_808-rimshot-snare_C_minor.mp3?1598487790',
-        scaleFactor: 100
+        scaleFactor: 1,
+        scaleFunction: () => {}
     }),
 
     fetch () {
@@ -88,6 +91,17 @@ export default {
 
     mounted () {
         this.audioElement = document.querySelector('audio');
+
+        this.scaleFunction = throttle(this.updateAbacusScaling, 25, {
+            leading: true,
+            trailing: false
+        });
+
+        window.addEventListener('resize', this.scaleFunction);
+    },
+
+    destroyed () {
+        window.removeEventListener('resize', this.scaleFunction);
     },
 
     methods: {
@@ -105,15 +119,14 @@ export default {
             if (document) {
                 await this.$nextTick();
                 const digitsWidth = document.querySelector('[scaling-wrapper]').getBoundingClientRect().width;
-                const normalisedDigitsWidth = digitsWidth * (100 / this.scaleFactor);
+                const normalisedDigitsWidth = digitsWidth * (1 / this.scaleFactor);
                 const bodyCardWidth = document.querySelector('.body-card').getBoundingClientRect().width;
 
                 const scaleFactor = bodyCardWidth / normalisedDigitsWidth;
                 if (scaleFactor < 1) {
-                    // Round down to nearest 0.1, as a percentage
-                    this.scaleFactor = Math.floor(scaleFactor * 10) * 10;
+                    this.scaleFactor = scaleFactor;
                 } else {
-                    this.scaleFactor = 100;
+                    this.scaleFactor = 1;
                 }
             }
         }
@@ -147,25 +160,5 @@ export default {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
-}
-
-.scale-90 {
-    transform: scale(0.9);
-}
-
-.scale-80 {
-    transform: scale(0.8);
-}
-
-.scale-70 {
-    transform: scale(0.7);
-}
-
-.scale-60 {
-    transform: scale(0.6);
-}
-
-.scale-50 {
-    transform: scale(0.5);
 }
 </style>
