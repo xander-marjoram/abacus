@@ -2,7 +2,7 @@ import { ADD } from '../services/constants';
 import updateDarkMode from '../services/darkMode';
 
 export const state = () => ({
-    darkMode: false,
+    darkMode: true,
     digits: 3,
     selectedOperators: [ADD],
     showNumbers: true,
