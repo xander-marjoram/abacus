@@ -94,4 +94,13 @@ body.dark {
             background-color: $grey-12;
         }
     }
+
+    .result {
+        &.correct {
+            color: lightgreen;
+        }
+        &.incorrect {
+            color: red;
+        }
+    }
 }

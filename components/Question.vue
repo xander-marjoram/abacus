@@ -17,7 +17,11 @@
             </div>
         </div>
         <div class="result-container">
-            <span class="result">
+            <span
+                :class="['result', {
+                    correct: correctGuess,
+                    incorrect: !correctGuess
+                }]">
                 {{ resultText }}
             </span>
             <button type="button" @click="checkGuess">
@@ -37,6 +41,7 @@ import { ADD, OPERATORS } from '@/services/constants';
 export default {
     data: () => ({
         answer: 0,
+        correctGuess: false,
         firstNumber: 0,
         guess: null,
         operator: '+',
@@ -65,11 +70,8 @@ export default {
 
     methods: {
         checkGuess () {
-            if (parseInt(this.guess) === this.answer) {
-                this.resultText = 'Correct!';
-            } else {
-                this.resultText = 'Incorrect';
-            }
+            this.correctGuess = parseInt(this.guess) === this.answer;
+            this.resultText = this.correctGuess ? 'Correct!' : 'Incorrect :(';
         },
 
         generateNewNumbers () {
@@ -103,7 +105,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import '~/assets/scss/variables.scss';
+
 .question-container {
     margin: auto;
     width: 95%;
@@ -127,6 +131,14 @@ export default {
 .result {
     min-height: 50px;
     grid-column: 1 / 3;
+
+    &.correct {
+        color: green;
+    }
+
+    &.incorrect {
+        color: $dark-red;
+    }
 }
 
 span {
