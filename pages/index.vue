@@ -7,15 +7,27 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import Abacus from '@/components/Abacus.vue';
 import Question from '@/components/Question.vue';
 import Settings from '@/components/Settings.vue';
+
+import updateDarkMode from '../services/darkMode';
 
 export default {
     components: {
         Abacus,
         Question,
         Settings
+    },
+
+    computed: {
+        ...mapState('settings', ['darkMode'])
+    },
+
+    mounted () {
+        updateDarkMode(this.darkMode);
     }
 };
 </script>

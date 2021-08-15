@@ -1,4 +1,5 @@
 import { ADD } from '../services/constants';
+import updateDarkMode from '../services/darkMode';
 
 export const state = () => ({
     darkMode: false,
@@ -8,16 +9,6 @@ export const state = () => ({
     showSettingsWindow: false,
     soundEnabled: false
 });
-
-const updateDarkMode = (darkMode) => {
-    if (document) {
-        if (darkMode) {
-            document.body.classList.add('dark');
-        } else {
-            document.body.classList.remove('dark');
-        }
-    }
-};
 
 export const mutations = {
     addDigit (state) {

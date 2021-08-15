@@ -1,4 +1,2 @@
-- Save settings to local storage
-- Read settings from local storage
 - Multiplication
 - Division

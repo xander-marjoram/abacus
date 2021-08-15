@@ -22,6 +22,8 @@ export default {
 
     modules: ['@nuxtjs/pwa'],
 
+    plugins: [{ src: '~/plugins/persistedState.client.js' }],
+
     pwa: {
         manifest: {
             lang: 'en'
