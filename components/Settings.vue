@@ -138,6 +138,7 @@ export default {
 .settings-window,
 .settings-window * {
     z-index: 99;
+    touch-action: manipulation;
 }
 
 .settings-window-button {
